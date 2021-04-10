@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>hello world</title>
+	<meta charset="utf-8" />
+
+	<!-- style sheets -->
+	<link rel="stylesheet" href="css/style.css">
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js">
+    </script>
+</head>
+
+<body>
+
+	<div class="header">
+		<center> some of my favorite cities, in a thousand words. </center>
+	</div>
+	<div class="sidebar">
+		These are some of my favorite photos from the last few years, and they just so happen to be of the cities I love the most. 
+		Each, with a significant memory attached to them. <p> I love taking pictures (see: 28,000 photos in my gallery) and traveling so I thought I'd combine the two. </p>
+		<p> During the last 12 months, I look back at these pictures the most.  </p>
+	</div>
+	<div class="content">
+		<div id="map"></div>
+	</div>
+
+<script>
+
+		var map = L.map('map').setView([0, 0], 2);
+
+		let cities = ['Singapore','Bali','Los Angeles','Seoul','Tokyo','New York City']
+
+		let data = [
+	{
+		'title':'Singapore',
+		'description': 'The river by Clarke Quay, <br> near where I lived for the first 18 years of my life.',
+		'lat': 1.3521,
+		'lon': 103.8198
+	},
+	{
+		'title':'Bali',
+		'description': 'A rare shot of an empty beach in pre-corona Bali <br> that I took during a family vacation. <br> The first city people think of when I mention my home country. <br> A 9 hour drive from Surabaya, where I am right now!',
+		'lat': 8.3405,
+		'lon': 115.0920
+	},
+	{
+		'title':'Los Angeles',
+		'description': 'Santa Monica Pier, one of the first places I visited <br> when I moved to LA for college. <br> Just a short bus ride away from my community college.',
+		'lat': 34.0522,
+		'lon': -118.2437
+	},
+	{
+		'title':'Seoul',
+		'description': 'My third time visiting South Korea. <br> Also, unknowingly to me then, my last vacation in a very <br> long time. ',
+		'lat': 37.5665,
+		'lon': 126.9780
+	},
+	{
+		'title':'Tokyo',
+		'description': 'My first time traveling without my family <br> and my first time to Japan! <br> Also, my favorite picture of the six.',
+		'lat': 35.6762,
+		'lon': 139.6503
+	},
+	{
+		'title':'New York City',
+		'description': 'I flew across the country for a concert. <br> My first trip after moving to LA.',
+		'lat': 40.7128,
+		'lon': -74.0060
+	},
+	]
+
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+		// loop through cities 
+				data.forEach(function(item) {
+						var marker = L.marker([item.lat,item.lon]).addTo(map)
+						.bindPopup(item.title + <b> item.description </b>)
+						.openPopup(); 
+				});
+
+
+</script>
+
+</body>
+</html>
