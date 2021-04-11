@@ -23,7 +23,7 @@ body {
 	background-color:#fcfaed;
 	font-family: Fjalla One; 
 	font-size:15px;
-	color:#cfc1d9; 
+	color:#472019; 
 }
 .sidebar {
 	grid-area: sidebar;
@@ -31,7 +31,7 @@ body {
 	background-color:#b9bbc8;
 	font-family: Georgia;
 	font-size:15px;
-	color:#050505; 
+	color:#f8f6f6; 
 }
 .content {
 	grid-area: content;
