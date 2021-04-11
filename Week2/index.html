@@ -35,6 +35,8 @@
 	</div>
 
     <script>
+	    
+	    var map = L.map('map').setView([1.3521,103.8198], 3);
 
         let cities = ['Singapore','Bali','Los Angeles','Seoul','Tokyo','New York City']
 
@@ -92,8 +94,6 @@
 		                .bindPopup("<center> <h1>" + item.title + "</h1>" + item.description + "<br> <p>" + "<img src ='" + item.img + "'/>")
 		                .openPopup()
         }); 
-	    
-	var map = L.map('map').setView([1.3521,103.8198], 3);
 
     </script>
 
