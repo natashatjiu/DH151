@@ -1,4 +1,6 @@
-var map = L.map('map').setView([1.3521,103.8198], 3);
+
+let map = L.map('map').setView([50,0],12);
+
 
         let cities = ['Singapore','Bali','Los Angeles','Seoul','Tokyo','New York City']
 
@@ -13,7 +15,7 @@ var map = L.map('map').setView([1.3521,103.8198], 3);
 	{
 		'title':'BALI, 2019',
 		'description': 'A rare shot of an empty beach in pre-corona Bali <br> that I took during a family vacation. <br> The first city people think of when I mention my home country. A 9 hour drive from Surabaya, <br> where I am right now!',
-		'lat': 8.3405,
+		'lat': -8.3405,
 		'lon': 115.0920,
         'img': 'https://raw.githubusercontent.com/natgrace/DH151/1804339e9e59c6ae6a0e572730e58053798bd521/Week%202/bali.jpg'
 	},
@@ -51,11 +53,45 @@ var map = L.map('map').setView([1.3521,103.8198], 3);
 	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        data.forEach(function(item){
-		    var marker = L.marker([item.lat,item.lon]).addTo(map)
-		                .bindPopup("<center> <h1>" + item.title + "</h1>" + item.description + "<br> <p>" + "<img src ='" + item.img + "'/>")
-		                .openPopup()
-    
+
+
+// create a feature group 
+let myMarkers = L.featureGroup();
+
+// loop through data 
+
+let icon = L.icon({
+	iconUrl: 'https://raw.githubusercontent.com/natgrace/DH151/main/Week3/icons8-camera-100.png',
+	iconSize: [50, 50],
+	iconAnchor: [29, 49],
+	popupAnchor: [0, -41],
+})
+
+
+data.forEach(function(item,index){
+	let marker = L.marker([item.lat,item.lon], {icon: icon}).addTo(map)
+		    .bindPopup("<center> <h1>" + item.title + "</h1>" + item.description + "<br> <p>" + "<img src ='" + item.img + "'/>")
+			.openPopup()
+	
+
+
+	myMarkers.addLayer(marker)
+
 		$('.sidebar').append(`<div class="sidebar-item"
-		onclick="alert()">${item.title}</div>`)				
+		onclick="flyToIndex(${index})">${item.title}</div>`)				
 }); 
+
+myMarkers.addTo(map)
+
+//define layers
+let layers = {
+	"My Markers": myMarkers
+}
+
+L.control.layers(null,layers).addTo(map)
+
+function flyToIndex(index){
+	map.flyTo([data[index].lat,data[index].lon],12)
+	myMarkers.getLayers()[index].openPopup()
+
+}

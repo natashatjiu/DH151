@@ -10,35 +10,51 @@ body,html {
 
 body {
     display: grid;
-	grid-template-rows: 80px 1fr;
-	grid-template-columns: 250px 1fr;
+	grid-template-rows: 70px 1fr;
+	grid-template-columns: 35% 65%;
 	grid-template-areas: 
-	"header header"
+	"header content"
 	"sidebar content";
 }
 
 .header {
 	grid-area: header;
 	padding:10px;
-	background-color:#fcfaed;
-	font-family: Fjalla One; 
-	font-size:15px;
-	color:#472019; 
+	background-color:#f8f7f2;
+	font-family: Abril Display; 
+	font-weight: Bold;
+	text-transform: uppercase;
+	font-style: italic;
+	font-size: 20px;
+	color: #4c3d3a; 
 }
 .sidebar {
 	grid-area: sidebar;
+	text-align:center;
 	padding:10px;
-	background-color:#b9bbc8;
+	background-color:#cbcfca;
 	font-family: Georgia;
-	font-size:15px;
-	color:#f8f6f6; 
+	font-size:13px;
+	color: #4c3d3a; 
 }
 .content {
 	grid-area: content;
 }
 
 .sidebar-item {
+
+	text-align:center;
+	color: #f8f7f2;
+    margin:10px;
+    font-size:10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 	padding: 15px;
-	background: #9e713e;
+	text-align: center;
+	background: #4c3d3a;
+} 
+
+.sidebar-item:hover {
+	background: #bd9d80
 
 }
