@@ -1,5 +1,5 @@
 
-let map = L.map('map').setView([50,0],12);
+let map = L.map('map').setView([50,0],10);
 
 
         let cities = ['Singapore','Bali','Los Angeles','Seoul','Tokyo','New York City']
@@ -14,7 +14,7 @@ let map = L.map('map').setView([50,0],12);
 	},
 	{
 		'title':'BALI, 2019',
-		'description': 'A rare shot of an empty beach in pre-corona Bali <br> that I took during a family vacation. <br> The first city people think of when I mention my home country. A 9 hour drive from Surabaya, <br> where I am right now!',
+		'description': 'A rare shot of an empty beach in pre-corona Bali. <br> The first place people think of when I mention my home country. A 9 hour drive from Surabaya, <br> where I am right now!',
 		'lat': -8.3405,
 		'lon': 115.0920,
         'img': 'https://raw.githubusercontent.com/natgrace/DH151/1804339e9e59c6ae6a0e572730e58053798bd521/Week%202/bali.jpg'
@@ -70,7 +70,7 @@ let icon = L.icon({
 
 data.forEach(function(item,index){
 	let marker = L.marker([item.lat,item.lon], {icon: icon}).addTo(map)
-		    .bindPopup("<center> <h1>" + item.title + "</h1>" + item.description + "<br> <p>" + "<img src ='" + item.img + "'/>")
+		    .bindPopup("<center> <h2>" + item.title + "</h2>" + item.description + "<p>" + "<img src ='" + item.img + "' style='width:150px;height:150px;'/> ")
 			.openPopup()
 	
 
@@ -91,7 +91,8 @@ let layers = {
 L.control.layers(null,layers).addTo(map)
 
 function flyToIndex(index){
-	map.flyTo([data[index].lat,data[index].lon],12)
+	map.flyTo([data[index].lat,data[index].lon],10)
 	myMarkers.getLayers()[index].openPopup()
 
 }
+
