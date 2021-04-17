@@ -70,7 +70,7 @@ let icon = L.icon({
 
 data.forEach(function(item,index){
 	let marker = L.marker([item.lat,item.lon], {icon: icon}).addTo(map)
-		    .bindPopup("<center> <h2>" + item.title + "</h2>" + item.description + "<p>" + "<img src ='" + item.img + "' style='width:150px;height:150px;'/> ")
+		    .bindPopup("<center> <h2>" + item.title + "</h2>" + item.description + "<p>" + "<img src ='" + item.img + "' style='width:200px;height:200px;'/> ")
 			.openPopup()
 	
 
@@ -91,7 +91,7 @@ let layers = {
 L.control.layers(null,layers).addTo(map)
 
 function flyToIndex(index){
-	map.flyTo([data[index].lat,data[index].lon],10)
+	map.flyTo([data[index].lat + 0.1,data[index].lon],10)
 	myMarkers.getLayers()[index].openPopup()
 
 }
