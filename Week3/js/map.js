@@ -56,4 +56,6 @@ var map = L.map('map').setView([1.3521,103.8198], 3);
 		                .bindPopup("<center> <h1>" + item.title + "</h1>" + item.description + "<br> <p>" + "<img src ='" + item.img + "'/>")
 		                .openPopup()
     
+		$('.sidebar').append(`<div class="sidebar-item"
+		onclick="alert()">${item.title}</div>`)				
 }); 

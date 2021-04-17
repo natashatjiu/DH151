@@ -36,3 +36,9 @@ body {
 .content {
 	grid-area: content;
 }
+
+.sidebar-item {
+	padding: 15px;
+	background: #9e713e;
+
+}
