@@ -3,12 +3,12 @@ let map;
 let lat = 0;
 let lon = 0;
 let zl = 3;
-let path = "data/dunitz.csv";
+let path = "data/sglocations.csv";
 let markers = L.featureGroup();
 
 // initialize
 $( document ).ready(function() {
-    createMap(lat,lon,zl);
+	createMap(lat,lon,zl);
 	readCSV(path);
 });
 
@@ -43,24 +43,34 @@ function mapCSV(data){
 		radius: 5,
 		weight: 1,
 		color: 'white',
-		fillColor: 'dodgerblue',
+		fillColor: 'red',
 		fillOpacity: 1
 	}
-	
+
 	// loop through each entry
 	data.data.forEach(function(item,index){
-		// create marker
-		let marker = L.marker ([item.latitude,item.longitude])
+		// create a marker
+		let marker = L.circleMarker([item.latitude,item.longitude],circleOptions)
 		.on('mouseover',function(){
-			this.bindPopup(`${item.title}<br><img src="${item.thumbnail_url}">`).openPopup()
+			this.bindPopup(`<center><h2>${item.title}<br><img src="${item.thumbnail_url}" style=width:350px;height:250px;/>`).openPopup()
 		})
-		// add marker to feature group
+
+		// add marker to featuregroup
 		markers.addLayer(marker)
+
+		// add entry to sidebar
+		$('.sidebar').append(`<p><img src="${item.thumbnail_url}" onmouseover="panToImage(${index})">`)
 	})
 
-	//add featuregroup to map
+
+	// add featuregroup to map
 	markers.addTo(map)
 
-	//fit markers to map
+	// fit map to markers
 	map.fitBounds(markers.getBounds())
+}
+
+function panToImage(index){
+	map.setZoom(17);
+	map.panTo(markers.getLayers()[index]._latlng);
 }
